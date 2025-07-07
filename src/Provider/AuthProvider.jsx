@@ -10,13 +10,14 @@ const AuthProvider = ({ children }) => {
 
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
 
-  const login = async (credentials) => {
-    const res = await loginAPI(credentials);
-    setUser(res.user);
-    setToken(res.token);
-    localStorage.setItem("user", JSON.stringify(res.user));
-    localStorage.setItem("token", res.token);
-  };
+ const login = async (credentials) => {
+  const res = await loginAPI(credentials);
+  setUser(res.user);
+  setToken(res.token);
+  localStorage.setItem("user", JSON.stringify(res.user));
+  localStorage.setItem("token", res.token);
+  return res;  
+};
 
   const register = async (data) => {
     const res = await registerAPI(data);
